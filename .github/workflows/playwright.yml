@@ -1,0 +1,26 @@
+name: Playwright QA Automation
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: |
+          npm install
+          npx playwright install --with-deps
+
+      - name: 24f1002537@ds.study.iitm.ac.in - Run Scraper
+        run: node scraper.js
